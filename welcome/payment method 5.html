@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Links</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(to right, #b8bcff, #6287ff);
+            color: black;
+        }
+        .heading {
+            font-size: 42px;
+            font-weight: bold;
+            margin-top: 40px;
+            animation: fadeIn 2s ease-in-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            color:rgb(0, 9, 139);
+            font-family: Arial;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        img {
+            width: 220px;
+            height: auto;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            opacity: 0;
+            animation: fadeInImages 1.5s ease-in-out forwards;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes fadeInImages {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        img:hover {
+            transform: scale(1.15);
+        }
+        .button-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        .back-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .back-button:hover {
+            background: red;
+            transform: scale(1.05);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="heading">Select Payment Method</h1>
+    
+    <div class="image-container">
+        <a href="https://www.npci.org.in/what-we-do/upi/product-overview" target="_blank"><img src="upi.png" alt="Image 1"></a>
+        <a href="https://paytm.com/" target="_blank"><img src="phone pay.png" alt="Image 2"></a>
+        <a href="https://www.phonepe.com/" target="_blank"><img src="paytm2.png" alt="Image 3"></a>
+    </div>
+    
+    <div class="button-container">
+        <button class="back-button" onclick="window.location.href='homepage.html'">Go Back to Main Menu</button>
+    </div>
+    
+</body>
+</html>

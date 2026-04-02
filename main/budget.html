@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Manager</title>
+    <link rel="stylesheet" href="../styles/main-style.css">
+    <!-- <link rel="stylesheet" href="main-style.css"> -->
+    <style>
+        body {
+            color: #ffffff;
+            overflow-y: auto;
+            font-size: 18px;
+        }
+        .section {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .all-budgets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+            flex-direction: row;
+            height: 50%;
+            overflow-y: auto;
+        }
+        .each-budget {
+            position: relative;
+            flex: 1 1 calc(25% - 10px);
+            max-width: calc(25% - 10px);
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .each-budget:hover {
+            transform: scale(1.02); /* Slightly grow the budget item */
+        }
+        .each-budget:active {
+            transform: scale(1.05); /* Slightly grow the budget item */
+        }
+        .delete-budget-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            z-index: 1; /* Ensure the button is on top of the budget item */
+        }
+        .delete-budget-button > img {
+            width: 20px;
+            height: 20px;
+            background-color: transparent;
+            border: none;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="button"] {
+            /* background-color: var(--background-secondary); */
+            background-color: rgba(0, 0, 0, 0);
+            color: var(--fontcolor-primary); /* Text color */
+            border: 1px solid white; /* Border color */
+            border-radius: 10px; /* Rounded corners */
+            padding: 10px; /* Padding inside the input */
+            font-size: 16px; /* Font size */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Include padding and border in width */
+            transition: all 0.3s ease; /* Smooth animation for hover and focus */
+        }
+
+        input[type="text"]:hover,
+        input[type="number"]:hover,
+        input[type="button"]:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            transform: scale(1.01); /* Slightly grow the input */
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            /* background-color: var(--mainpg-clr2); */
+            background-color: rgba(48, 38, 134, 0.2);
+            border-color: rgb(196, 204, 255); /* Change border color on focus */
+            outline: none; /* Remove default focus outline */
+            transform: scale(1.02); /* Slightly grow the input */
+        }
+
+        input[type="button"] {
+            cursor: pointer; /* Change cursor to pointer for buttons */
+            background-color: var(--mainpg-clr2); /* Button background color */
+            color: var(--fontcolor-primary); /* Button text color */
+            font-weight: bold; /* Bold text for buttons */
+            transition: all 0.3s ease; /* Smooth animation for hover */
+        }
+
+        input[type="button"]:hover {
+            background-color: var(--mainpg-clr2); /* Button background color */
+            color: var(--fontcolor-primary); /* Change text color on hover */
+            transform: scale(1.02); /* Slightly grow the button */
+        }
+        /* Hide the arrows in number inputs for Chrome, Edge, and Safari */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Hide the arrows in number inputs for Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .budget-unreached {
+            background: var(--background-three);
+        }
+        .budget-reached {
+            background-color: rgba(0, 255, 0, 0.5); /* Light green background */
+            /* color: #000; */
+        }
+        .budget-reached:hover {
+            background-color: rgba(0, 255, 0, 0.6); /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Add Budget Section -->
+    <div id="add-budget" class="section">
+        <h1>Add Budget</h1>
+        <form>
+            <label for="budget-for">Budget For:</label>
+            <input type="text" name="budget-for" id="budget-for"><br>
+            <label for="budget-target">Target:</label>
+            <input type="number" id="budget-target" name="budget-target" min="0"><br><br>
+            <input type="button" value="Submit" id="submit-budget">
+        </form>
+    </div>
+
+    <!-- Current Budgets Section -->
+    <div id="all-budget" class="section">
+        <h1>Current Budgets</h1>
+        <div id="all-budgets" class="all-budgets">
+            <!-- Placeholder for budget items -->
+        </div>
+    </div>
+
+    <!-- Detailed Budget View Section -->
+    <div id="detailed-budget" class="section hidden">
+        <h1>Budget Details</h1>
+        <p id="budget-details">Details will appear here when a budget item is clicked.</p>
+        <form id="add-to-budget-form">
+            <label for="add-amount">Add Amount:</label>
+            <input type="number" id="add-amount" min="0"><br><br>
+            <input type="button" value="Add Amount" id="add-amount-btn">
+        </form>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> -->
+    <script src="confetti.js"></script>
+    <script src="home.js"></script>
+    <script>
+
+        displayAllBudgets();
+        document.getElementById('submit-budget').addEventListener('click', function () {
+            const budgetFor = document.getElementById('budget-for').value;
+            const target = document.getElementById('budget-target').value;
+    
+            if (budgetFor === '' || target === '') {
+                alert('Please fill in all fields.');
+            } else if (target <= 0) {
+                alert('Enter a valid target amount.');
+            } else {
+                // Create a JSON object
+                const budget = {
+                    for: budgetFor,
+                    target: parseFloat(target),
+                    current: 0.0
+                };
+                // Call the addRecordtoDB function
+                addRecordtoDB(budget, "addBudget");
+                document.querySelector('#add-budget form').reset();
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

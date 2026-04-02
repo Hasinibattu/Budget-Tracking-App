@@ -1,0 +1,125 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrollbars */
+    position: relative;
+}
+
+/* Background Video Styling */
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire screen */
+    z-index: -1; /* Ensures the content appears above the video */
+}
+
+/* Container to center the form */
+.container {
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.4); /* White background with transparency */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Applies a blur effect to the background */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    position: relative;
+    z-index: 1; /* Ensures the content is on top of the video */
+}
+
+/* Form Styling */
+.form-container {
+    text-align: center;
+}
+
+h2 {
+    color: #fbfcff;  /* Green color for the title */
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f5f5dc; /* Light cream color */
+}
+
+/* Button Styling */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #1400a9; /* Green button */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #6264ff; /* Darker green on hover */
+}
+
+/* Link Styling */
+.register-link {
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #f6fff6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+.homebutton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #3300ff6f; /* Green button */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.homebutton:hover {
+    background-color: #6264ff;
+}

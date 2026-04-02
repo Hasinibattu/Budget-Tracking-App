@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ - Budget Tracker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 2rem;
+      text-decoration: none;
+      background-color: #2980b9;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #1c598a;
+    }
+
+    .accordion {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .faq-item {
+      background-color: #fff;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question {
+      padding: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #2980b9;
+      position: relative;
+    }
+
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 1rem;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1rem;
+  background-color: #fdfdfd;
+  color: #34495e;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    max-height 0.4s ease,
+    padding 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding: 1rem;
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+}
+    .faq-heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: slideFadeIn 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(-20px);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.1rem;
+}
+.faq-heading span {
+  background: linear-gradient(to right, #2980b9, #6dd5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: text-shadow 0.3s ease;
+  cursor: default;
+}
+.faq-heading span:hover {
+  text-shadow: 0 0 8px #6dd5fa, 0 0 16px #2980b9;
+}
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}.back-button {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  background-color: #2980b9;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+  background-color: #1c598a;
+  transform: scale(1.05);
+}
+
+
+  </style>
+</head>
+<body>
+    <a href="homepage.html" class="back-button">← Return to Main Page</a>
+
+    <h1 class="faq-heading">
+        <span>F</span><span>r</span><span>e</span><span>q</span><span>u</span><span>e</span><span>n</span><span>t</span><span>l</span><span>y</span>
+        <span> </span>
+        <span>A</span><span>s</span><span>k</span><span>e</span><span>d</span>
+        <span> </span>
+        <span>Q</span><span>u</span><span>e</span><span>s</span><span>t</span><span>i</span><span>o</span><span>n</span><span>s</span>
+      </h1>
+      
+
+  <div class="accordion">
+    <div class="faq-item">
+      <div class="faq-question">What is a budget tracker?</div>
+      <div class="faq-answer">
+        A budget tracker is a tool that helps you plan, manage, and track your income and expenses to better control your personal finances.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Is my financial data safe?</div>
+      <div class="faq-answer">
+        Yes, we prioritize your privacy. All data is stored securely and never shared with third parties without your consent.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I add a new expense?</div>
+      <div class="faq-answer">
+        Navigate to the dashboard, click on "Add Expense", fill out the details, and click "Save". You can categorize expenses for better tracking.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can I track multiple budgets?</div>
+      <div class="faq-answer">
+        Yes, you can create and manage multiple budgets for different purposes like groceries, travel, bills, and more.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Is this service free?</div>
+      <div class="faq-answer">
+        Yes! Our core features are completely free. We may offer premium features in the future, but basic tracking will always be free.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can I export my budget or reports?</div>
+      <div class="faq-answer">
+        As of now, you cannot export your budget or reports. However, we are working on this feature for future updates.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I reset my account or data?</div>
+      <div class="faq-answer">
+        Go to Settings > Account Management. You’ll find options to reset your data or delete your account entirely.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(item => {
+      item.addEventListener('click', () => {
+        const faqItem = item.parentElement;
+        faqItem.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

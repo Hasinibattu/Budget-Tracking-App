@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Graph</title>
+    <link rel="stylesheet" href="../styles/main-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body style="background-color: black;">
+    <h1 style="text-align: center; color: #ffffff;">Balance Chart</h1>
+    <div style="width: 80%; margin: 0 auto; height:90%">
+        <canvas id="lineGraph"></canvas>
+    </div>
+    <script src="home.js"></script>
+    <script>
+        const data = getBalanceList().slice(1);
+        // const data = [
+        //     1000, 1200, 1500, 1300, 4400, 1600, 1800, 2000, 2200, 2400, 2600,
+        //     2800, 3200, 3000, 3800, 4000, 3400, 4200, 4600,
+        //     4800, 3600, 5000
+        // ];
+
+        // Get the canvas element
+        const ctx = document.getElementById('lineGraph').getContext('2d');
+
+        // Create the line graph
+        const lineGraph = new Chart(ctx, {
+            type: 'line', // Specify the chart type
+            data: {
+                labels: data.map((_, index) => ``), // X-axis labels
+                datasets: [{
+                    label: 'Balance Over Time', // Legend label
+                    data: data, // Y-axis data
+                    borderWidth: 2, // Line thickness
+                    tension: 0.2, // Smoothness of the line
+                    segment: {
+                        borderColor: (ctx) => {
+                            // Change line color based on direction
+                            return ctx.p0.parsed.y > ctx.p1.parsed.y ? 'red' : 'green';
+                        }
+                    },
+                    pointRadius: 3, // Size of data points
+                    pointBackgroundColor: 'rgba(75, 192, 192, 1)', // Data point color
+                    fill: false // Disable fill under the line
+                }]
+            },
+            options: {
+                responsive: true, // Make the chart responsive
+                plugins: {
+                    legend: {
+                        display: true, // Show the legend
+                        position: 'top' // Position of the legend
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                        },
+                        ticks: {
+                            color: '#ffffff' // X-axis tick color
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Balance', // Y-axis title
+                            color: '#ffffff'
+                        },
+                        ticks: {
+                            color: '#ffffff', // Y-axis tick color
+                            beginAtZero: true // Start Y-axis at 0
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

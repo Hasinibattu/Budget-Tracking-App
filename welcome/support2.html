@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Us</title>
+    <style>
+        body{
+            font-family: Arial;
+            background-color:black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            width: 100vw;
+            height: 90vh;
+            overflow: hidden;
+            font-size: 18px;
+        }
+        h1 {
+                text-align: center;
+                color:black;
+            }
+        .container{
+            max-width: 350px;
+            margin:0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 0 75px rgba(255, 255, 255, 0.7);
+        }
+       
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .donate-btn {
+            background-color:green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .labelcontainer {
+            display: flex;
+            margin-bottom: 15px;
+        } 
+        .labelcontainer > input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .homebutton {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: #3300ff6f; /* Green button */
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .homebutton:hover {
+        background-color: #6264ff;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button type="button" onclick="backToHome()" class="homebutton">Back to home</button>
+        <h1>Support Us</h1>
+        <p style="text-align: justify;">Your support helps us continue our mission. You can contribute in different ways, such as donations, spreading the word, or volunteering.</p>
+        <div class="labelcontainer">
+            <label >Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+        </div>
+        <div class="labelcontainer">
+            <label >Email:</label>
+            <input type="email" id="email" name="email"required><br><br>
+        </div>
+        <div class="labelcontainer">
+            <label >Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required><br><br> 
+        </div>
+
+        <button class="donate-btn" onclick="donate()">Donate Now</button><br>
+        
+        
+    <script>
+        function donate() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            if (name === "" || email === "" || phone === "") {
+                alert("Please fill in all fields.");
+                return;
+            }
+            alert("Thank you for your support! Redirecting to the donation page...");
+            window.location.href = "payment method 5.html";
+        }
+        function backToHome() {
+            window.location.href = 'homepage.html'; // Redirect to the home page
+        }
+    </script>
+</body>
+</html>

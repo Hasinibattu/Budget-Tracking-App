@@ -1,0 +1,32 @@
+{
+  "name": "mainproject",
+  "version": "1.0.0",
+  "description": "Project for budget management",
+  "main": "emain.js",
+  "keywords": [],
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^35.1.2",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "electron-is-dev": "^3.0.1",
+    "express": "^4.21.2"
+  },
+  "build": {
+    "appId": "com.mycompany.myapp",
+    "productName": "Budgetify",
+    "directories": {
+      "output": "dist"
+    },
+    "icon": "icon.png"
+  },
+  "icon": "icon.png"
+}

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="main-style.css"> -->
+    <link rel="stylesheet" href="../styles/main-style.css">
+    <style>
+    /* Home Section */
+    
+    body {
+        background: var(--background-main);
+        display: flex;
+        flex-direction: row;
+    }
+    h2 {
+        text-align: center;
+    }
+    .home {
+        display: flex;
+        height: 100vh; /* Full viewport height */
+        width: 100%;
+    }
+
+    .left-side {
+        display: flex;
+        flex-direction: column;
+        width: 40%; /* Adjust width as needed */
+        padding: 10px;
+        gap: 10px; /* Add spacing between the divs */
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .left-side > div {
+        background: var(--background-three);
+        border-radius: 10px;
+        padding: 10px;
+        color: var(--fontcolor-inverse);
+        height: 40vh;
+        width: 90%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+    }
+
+    .left-side > div:hover {
+        transform: scale(1.02); /* Slightly grow the element */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    }
+
+    .left-side > div > h1 {
+        color: var(--fontcolor-inverse);
+        text-align: center;
+        margin: 0px;
+    }
+
+    form > label {
+        color: var(--fontcolor-inverse);
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    form > select {
+        background-color: var(--background-secondary);
+        color: var(--fontcolor-primary);
+        border: 1px solid var(--fontcolor-primary);
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 16px;
+        transition: all 0.3s ease; /* Smooth animation for all properties */
+        margin-bottom: 10px;
+    }
+
+    form > select:hover {
+        transform: scale(1.02);
+        border-color: var(--mainpg-clr2);
+    }
+
+    form > select:focus {
+        /* background-color: var(--mainpg-clr2); */
+        /* color: var(--fontcolor-inverse); */
+        transform: scale(1.05); /* Slightly grow the select box */
+        border-color: var(--mainpg-clr3); /* Change border color */
+        outline: none; /* Remove default focus outline */
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="button"] {
+        /* background-color: var(--background-secondary); */
+        background-color: rgba(0, 0, 0, 0);
+        color: var(--fontcolor-primary); /* Text color */
+        border: 1px solid var(--background-secondary); /* Border color */
+        border-radius: 10px; /* Rounded corners */
+        padding: 10px; /* Padding inside the input */
+        font-size: 16px; /* Font size */
+        width: 100%; /* Full width */
+        box-sizing: border-box; /* Include padding and border in width */
+        transition: all 0.3s ease; /* Smooth animation for hover and focus */
+    }
+
+    input[type="text"]:hover,
+    input[type="number"]:hover,
+    input[type="button"]:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-color: var(--mainpg-clr2); /* Change border color on hover */
+        transform: scale(1.01); /* Slightly grow the input */
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus {
+        /* background-color: var(--mainpg-clr2); */
+        background-color: rgba(0, 0, 0, 0.3);
+        border-color: transparent; /* Change border color on focus */
+        outline: none; /* Remove default focus outline */
+        transform: scale(1.02); /* Slightly grow the input */
+    }
+
+    input[type="button"] {
+        cursor: pointer; /* Change cursor to pointer for buttons */
+        background-color: var(--mainpg-clr2); /* Button background color */
+        color: var(--fontcolor-primary); /* Button text color */
+        font-weight: bold; /* Bold text for buttons */
+        transition: all 0.3s ease; /* Smooth animation for hover */
+    }
+
+    input[type="button"]:hover {
+        transform: scale(1.02); 
+    }
+    /* input[type="button"]:active {
+        transform: scale(0.9) rotate(720deg); 
+    } */
+
+    /* Hide the arrows in number inputs for Chrome, Edge, and Safari */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Hide the arrows in number inputs for Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    /* Right Side Section */
+    .right-side {
+        flex: 1; /* Take up the remaining space */
+        padding: 20px;
+        color: var(--fontcolor-primary);
+        border-left: 2px solid var(--fontcolor-primary);
+        overflow-y: auto; /* Allow scrolling if content overflows */
+    }
+
+    .right-side > div {
+        height: 35vh;
+        border: 0px;
+        overflow-y: auto;
+    }
+
+    .right-side > div > table {
+        width: 100%;
+        height: 100%;
+        border: 1px solid var(--fontcolor-primary);
+        border-radius: 10px;
+        color: var(--fontcolor-primary);
+        background-color: var(--background-secondary);
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    .right-side > div > table > tr {
+        height: 40px;
+        border: 1px solid var(--fontcolor-primary);
+        background-color: var(--background-secondary);
+    }
+
+    .right-side > div > h2 {
+        color: var(--fontcolor-primary);
+        text-align: center;
+        margin: 0px;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="home">
+        <!-- Left side -->
+        <div class="left-side">
+            <div id="add-expense" class="add-expense">
+                <h1>Add Expense</h1>
+                <form action="">
+                    <label for="expense-amount">Amount:</label><br>
+                    <input type="number" id="expense-amount" name="expense-amount" min="0"><br><br>
+                    <select name="expense-type" id="expense-type" onclick="options[0].hidden=true">
+                        <option value="default">Select expense type</option>
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="button" value="Submit" id="submit-expense">
+                </form>
+            </div>
+            <div id="add-income" class="add-income">
+                <h1>Add Income</h1>
+                <form action="">
+                    <label for="income-amount">Amount:</label><br>
+                    <input type="number" id="income-amount" name="income-amount" min="0"><br><br>
+                    <select name="income-type" id="income-type" onclick="options[0].hidden=true">
+                        <option value="default">Select income type</option>
+                        <option value="salary">Salary</option>
+                        <option value="investment">Investment</option>
+                        <option value="gift">Gift</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="button" value="Submit" id="submit-income">
+                </form>
+            </div>
+            <!-- <div id="add-budget" class="add-budget">
+                <h1>Add Budget</h1>
+                <form action="">
+                    <label for="budget-for">Budget For:</label>
+                    <input type="text" name="budget-for" id="budget-for"><br>
+                    <label for="budget-target">Target:</label>
+                    <input type="number" id="budget-target" name="income-amount" min="0"><br><br>
+                    <input type="button" value="Submit" id="submit-budget">
+                </form>
+            </div> -->
+        </div>
+
+        <!-- Right side -->
+        <div class="right-side">
+            <h2>All Expenses</h2>
+            <div>
+                <table id="expenses-table"></table>
+            </div>
+            <h2>All Incomes</h2>
+            <div>
+                <table id="incomes-table"></table>
+            </div>
+        </div>
+    </div>
+    <script src="home.js"></script>
+    <script>
+        // JavaScript code to validate before adding expense
+        document.getElementById('submit-expense').addEventListener('click', function () {
+            const amount = document.getElementById('expense-amount').value;
+            const type = document.getElementById('expense-type').value;
+    
+            if (amount === '' || type === 'default') {
+                alert('Please fill in all fields.');
+            } else if (amount <= 0) {
+                alert('Enter a valid amount.');
+            } else {
+                // Create a JSON object
+                const today = new Date();
+                const formattedDate = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
+                const expense = {
+                    amount: parseFloat(amount), // Convert amount to a number
+                    date: formattedDate, // Current date in dd-mm-yyyy format
+                    category: type
+                };
+    
+                // Call the addRecordtoDB function
+                addRecordtoDB(expense, "addExpense");
+                document.querySelector('#add-expense form').reset();
+            }
+        });
+    
+        // JavaScript code to validate before adding income
+        document.getElementById('submit-income').addEventListener('click', function () {
+            const amount = document.getElementById('income-amount').value;
+            const type = document.getElementById('income-type').value;
+    
+            if (amount === '' || type === 'default') {
+                alert('Please fill in all fields.');
+            } else if (amount <= 0) {
+                alert('Enter a valid amount.');
+            } else {
+                // Create a JSON object
+                const today = new Date();
+                const formattedDate = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
+                const income = {
+                    amount: parseFloat(amount), // Convert amount to a number
+                    date: formattedDate, // Current date in dd-mm-yyyy format
+                    source: type
+                };
+    
+                // Call the addRecordtoDB function
+                addRecordtoDB(income, "addIncome");
+                document.querySelector('#add-income form').reset();
+            }
+        });
+    
+        // // JavaScript code to validate before adding budget
+        // document.getElementById('submit-budget').addEventListener('click', function () {
+        //     const budgetFor = document.getElementById('budget-for').value;
+        //     const target = document.getElementById('budget-target').value;
+    
+        //     if (budgetFor === '' || target === '') {
+        //         alert('Please fill in all fields.');
+        //     } else if (target <= 0) {
+        //         alert('Enter a valid target amount.');
+        //     } else {
+        //         // Create a JSON object
+        //         const budget = {
+        //             for: budgetFor,
+        //             target: parseFloat(target),
+        //             current: 0.0
+        //         };
+    
+        //         // Call the addRecordtoDB function
+        //         addRecordtoDB(budget, "addBudget");
+        //         document.querySelector('#add-budget form').reset();
+        //     }
+        // });
+        displayExpenses();
+        displayIncomes();
+
+    </script>
+</body>
+</html>

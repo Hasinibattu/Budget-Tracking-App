@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <!-- <link rel="stylesheet" href="main-style.css"> -->
+    <link rel="stylesheet" href="../styles/main-style.css">
+    <style>
+        
+        body {
+            background: var(--background-main);
+            display: flex;
+            flex-direction: row;
+        }
+        button {
+            background-color: transparent;
+            border: none;
+        }
+        /* Sidebar Styles */
+        .sidebar {
+            position: relative;
+            padding-top: 75px;
+            background-color: var(--background-secondary);
+            height: 100vh-padding-top; /* Full height minus the top padding */
+            width: 60px; /* Initial thin width */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: width 0.3s ease; /* Smooth transition for width */
+            overflow: hidden; /* Hide content when the sidebar is thin */
+            border-right: 2px solid rgb(255, 255, 255); /* Right border for the sidebar */
+        }
+
+        .sidebar:hover {
+            width: 15vw; /* Expand to full width on hover */
+        }
+
+        .logo {
+            font-size: 34px;
+            font-weight: bold;
+            text-align: center;
+            color: var(--fontcolor-primary);
+            position: absolute; /* Position it absolutely within the sidebar */
+            top: calc(50%); /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%) rotate(-90deg); /* Rotate 90 degrees and center */
+            transform-origin: center; /* Rotate around the center */
+            transition: transform 0.3s ease, top 0.3s ease; /* Smooth transition for position and rotation */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .sidebar:hover .logo {
+            top: 10px; /* Move to the top of the sidebar */
+            left: 50%; /* Keep it horizontally centered */
+            transform: translate(-50%, 0) rotate(0deg); /* Reset rotation to 0 degrees */
+        }
+
+        .logo span {
+            color: #4da6ff;
+        }
+
+        .sidebar-profile,
+        .sidebar-buttons,
+        .sidebar-clock {
+            opacity: 0; /* Hide content when the sidebar is thin */
+            transition: opacity 0.3s ease; /* Smooth transition for opacity */
+        }
+
+        .sidebar:hover .sidebar-profile,
+        .sidebar:hover .sidebar-buttons,
+        .sidebar:hover .sidebar-clock {
+            opacity: 1; /* Show content when the sidebar expands */
+        }
+
+        .sidebar-profile {
+            display: flex;
+            justify-content: space-around;
+            color: var(--fontcolor-primary);
+            width: 100%;
+            font-family: 'comfortaa';
+            border-bottom: 1px solid var(--fontcolor-primary);
+        }
+
+        .sidebar-clock {
+            color: var(--fontcolor-primary);
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar-button {
+            color: var(--fontcolor-primary);
+            font-size: 18px;
+        }
+
+        /* Content Section */
+        .content {
+            width: 85vw;
+            border-bottom: 2px solid rgb(255, 255, 255);
+            display: flex;
+            height: 100vh;
+            flex-grow: 1;
+            overflow-y: auto;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sidebar-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .sidebar-button {
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+            color: var(--fontcolor-primary);
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 5px 0;
+            transition: background-color 0.5s ease, color 0.3s ease; /* Smooth transition for background and text color */
+        }
+        .sidebar-button:hover {
+            background-color: var(--fontcolor-primary); /* Change background color on hover */
+            color: var(--background-secondary); /* Change text color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">Budget<span>ify</span></div>
+        <div class="sidebar-profile" id="sidebar-profile"></div>
+    
+        
+        <div class="sidebar-buttons" id="sidebar-buttons">
+            <!-- Switch window buttons -->
+            <a href="home.html" class="sidebar-button" target="display">Home</a>
+            <a href="budget.html" class="sidebar-button" target="display">Manage Budgets</a>
+            <a href="graph.html" class="sidebar-button" target="display">View Graph</a>
+            <button type="button" class="sidebar-button" onclick="logout()">Logout</button>
+        </div>
+        <div id="sidebar-clock" class="sidebar-clock"></div>
+    </div>
+    
+    <div class="content">
+        <iframe src="home.html" frameborder="0" height="100%" name="display"></iframe>
+    </div>
+
+    <script src="clock.js"></script>
+    <script src="home.js"></script>
+    <script>
+        // Call initializeUsers when the script loads
+        initializeUsers();
+
+        function logout() {
+            // Clear the session storage and redirect to the login page
+            sessionStorage.clear();
+            localStorage.clear();
+            alert("You have been logged out.");
+            window.location.href = "homepage.html";
+        }
+    </script>
+</body>
+</html> 

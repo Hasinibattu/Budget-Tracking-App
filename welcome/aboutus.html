@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Budget Tracker</title>
+  <style>
+    :root {
+        --background-main: linear-gradient(135deg, #020201, #020202, #04003e, #020202);
+        --primary-foreground: #6c85ff;
+        --primary-hover: #ffffff;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-foreground);
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--background-main);
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-hover);
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000000;
+      /* background-color: #f4f7fa; */
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin: 2rem;
+      text-decoration: none;
+      background-color: #1878b8;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .back-button:hover {
+      background-color: #074f8a;
+      transform: scale(1.05);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      background: linear-gradient(to right, #2980b9, #6dd5fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 2rem 0;
+    }
+
+    .member-section {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 5rem 2rem;
+      border-bottom: 1px solid #ddd;
+      overflow: hidden;
+      height: 450px; /* Increased from 400px */
+    }
+
+    .member-wrapper {
+      width: 350px; /* Increased from 300px */
+      height: 350px; /* Increased from 300px */
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .member-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .member-wrapper:hover img {
+      transform: scale(1.03);
+    }
+
+    .confetti-container {
+      position: absolute;
+      top: calc(50% + 175px); /* Adjusted for new height */
+      left: 0;
+      width: 350px; /* Match new width */
+      height: calc(100% - 175px); /* Adjusted for new height */
+      pointer-events: none;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      opacity: 0;
+      animation: fall 2s linear forwards;
+      border-radius: 50%;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(120px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .member-info {
+      position: absolute;
+      right: 2rem;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      max-width: 350px; /* Slightly wider */
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 3;
+    }
+
+    .member-wrapper:hover ~ .member-info {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .member-info h3 {
+      color: #2980b9;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .member-info .section {
+      margin: 0.8rem 0;
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .arrow {
+      position: absolute;
+      width: 40%;
+      /* width: 180px; */
+      height: 4px;
+      background-color: #3498db;
+      top: 50%;
+      left: 370px; /* Adjusted for new width */
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+      z-index: 1;
+    }
+
+    .arrow-head {
+      position: absolute;
+      top: calc(50% - 6px);
+      left: calc(40% + 370px); /* Adjusted for new width */
+      /* left: 550px; */
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid #3498db;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .member-wrapper:hover ~ .arrow {
+      transform: scaleX(1);
+    }
+
+    .member-wrapper:hover ~ .arrow-head {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .member-section {
+        flex-direction: column;
+        height: auto;
+        padding: 3rem 1rem;
+      }
+
+      .member-info {
+        position: static;
+        transform: none !important;
+        opacity: 1 !important;
+        margin-top: 1.5rem;
+        width: 90%;
+        max-width: 100%;
+      }
+
+      .member-wrapper {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 1/1;
+      }
+
+      .arrow,
+      .arrow-head {
+        display: none;
+      }
+
+      .confetti-container {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<a href="homepage.html" class="back-button">← Return to Main Page</a>
+<h1>Meet the Team</h1>
+
+<!-- Member 1 -->
+<div class="member-section">
+  <div class="member-wrapper"
+       onmouseenter="startConfetti(this)"
+       onmouseleave="stopConfetti(this)">
+    <img src="hasini.jpg" alt="Hasini" />
+  </div>
+
+  <div class="confetti-container"></div>
+
+  <div class="arrow"></div>
+  <div class="arrow-head"></div>
+
+  <div class="member-info">
+    <h3>Hasini</h3>
+    <div class="section">Role: Team Member, Assistant frontend and backend Developer along with being the main innovator.</div>
+    <div class="section">Skills: Python, HTML, CSS, Java, React, MySQL, Electron</div>
+    <div class="section">Hobbies: Sketching, Music, Dancing</div>
+  </div>
+</div>
+
+<!-- Member 2 -->
+<div class="member-section">
+  <div class="member-wrapper"
+       onmouseenter="startConfetti(this)"
+       onmouseleave="stopConfetti(this)">
+    <img src="jishnu.jpg" alt="Jishnu Nambiar" />
+  </div>
+
+  <div class="confetti-container"></div>
+
+  <div class="arrow"></div>
+  <div class="arrow-head"></div>
+
+  <div class="member-info">
+    <h3>Jishnu Nambiar</h3>
+    <div class="section">Role: Team Lead & main backend Developer</div>
+    <div class="section">Skills: Python, Java, MySQL, JavaScript, HTML, CSS and C</div>
+    <div class="section">Hobbies: Singing, Drawing</div>
+  </div>
+</div>
+
+<!-- Member 3 -->
+<div class="member-section">
+  <div class="member-wrapper"
+       onmouseenter="startConfetti(this)"
+       onmouseleave="stopConfetti(this)">
+    <img src="dominic.jpg" alt="Dominic Karol Peter" />
+  </div>
+
+  <div class="confetti-container"></div>
+
+  <div class="arrow"></div>
+  <div class="arrow-head"></div>
+
+  <div class="member-info">
+    <h3>Dominic Karol Peter</h3>
+    <div class="section">Role: Team member and main front end developer for the project</div>
+    <div class="section">Skills: Python, Java, C, ARM assembly, HTML, CSS, JavaScript</div>
+    <div class="section">Hobbies: Drawing, Playing games</div>
+  </div>
+</div>
+
+<script>
+  let confettiIntervals = new WeakMap();
+
+  function startConfetti(wrapper) {
+    const section = wrapper.parentElement;
+    const container = section.querySelector('.confetti-container');
+
+    if (confettiIntervals.has(wrapper)) return;
+
+    const interval = setInterval(() => {
+      const confetti = document.createElement('span');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 330 + 'px'; // Adjusted for new width
+      confetti.style.backgroundColor = getRandomColor();
+      container.appendChild(confetti);
+
+      setTimeout(() => {
+        confetti.remove();
+      }, 2200);
+    }, 100);
+
+    confettiIntervals.set(wrapper, interval);
+  }
+
+  function stopConfetti(wrapper) {
+    const interval = confettiIntervals.get(wrapper);
+    if (interval) {
+      clearInterval(interval);
+      confettiIntervals.delete(wrapper);
+    }
+  }
+
+  function getRandomColor() {
+    const colors = ['#e74c3c', '#f1c40f', '#2ecc71', '#9b59b6', '#3498db', '#fd79a8'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+</script>
+
+</body>
+</html>

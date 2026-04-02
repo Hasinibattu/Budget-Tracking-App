@@ -1,0 +1,50 @@
+:root {
+    --blue: #6495ed;
+    --white: #faf0e6;
+    --background-main: linear-gradient(135deg, #020201, #020202, #04003e, #020202);
+    --background-secondary: #1f1f1f;
+    --background-three: linear-gradient(135deg, #68a9ff, #5325de);
+    --fontcolor-primary: #ffffff;
+    --fontcolor-inverse: #000000;
+    --primary-foreground: #6c85ff;
+    --primary-hover: #ffffff;
+    
+    --mainpg-clr1: #323232;
+    --mainpg-clr2: rgb(79, 0, 183);
+    --mainpg-clr3: #97e8ff;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-foreground);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-main);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+}
+
+html {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+    overflow: hidden;
+}
+
+
+p {
+    color: var(--fontcolor-primary);
+}

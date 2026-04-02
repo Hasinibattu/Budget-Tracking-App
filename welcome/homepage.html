@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <style>
+        :root {
+            --background-main: #111111;
+            --primary-foreground: #222288;
+            --primary-hover: #ffffff;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-foreground);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-main);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-hover);
+            background: linear-gradient(135deg, var(--background-main), var(--primary-foreground), var(--background-main));
+        }
+
+        html{
+            overflow-x: hidden;
+            /* cursor: none; */
+
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width:100%;
+            overflow-x: hidden;
+            padding-top: 80px;
+            
+            
+            
+            
+            ;
+
+        }
+        .section {
+    padding: 50px 20px;
+    position: relative;
+}
+
+.section:nth-child(odd) {
+    background: linear-gradient(to bottom, #1a1a1a, #222);
+}
+
+.section:nth-child(even) {
+    background: linear-gradient(to bottom, #222, #2a2a2a);
+}
+
+header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%; /* Changed from fixed px to percentage */
+        background: #222;
+        color: white;
+        position: fixed;
+        top: 0;
+        width: 90%; /* Adjusted to account for padding */
+        z-index: 1000;
+        height: 60px;
+        box-sizing: border-box;
+    }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #4da6ff;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+        
+        .signup-btn, .login-btn {
+            background: #4da6ff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        
+        section {
+            width: 100%;
+            padding: 20px 0;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: row; /* CHANGED FROM column to row */
+            align-items: center;
+            gap: 50px;
+            padding: 50px 20px;
+        }
+        
+        .stories-container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .stories {
+            position: relative;
+            width: 350px;
+            height: 450px;
+        }
+        
+        .stories img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 0px;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .story-text {
+            font-size: 20px;
+            width: 300px;
+            text-align: left; /* CHANGED FROM center to left */
+            transition: opacity 1s ease-in-out;
+            /* REMOVED margin: 20px auto */
+        }
+        
+        .hero {
+            padding: 50px 20px;
+            background: linear-gradient(to right, #000, #222);
+            color: white;
+            text-align: center;
+        }
+        
+        .btn {
+            background: #4da6ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        
+        .budget-tracker {
+            display: none;
+            padding: 30px;
+            background: #f4f4f4;
+        }
+        
+        .tracker-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tracker-box {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        input {
+            padding: 10px;
+            margin-top: 5px;
+            width: 150px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .extra-content {
+            padding: 40px 20px;
+            text-align: center;
+            background: #222;
+        }
+        
+        footer {
+            padding: 20px;
+            background: #222;
+            color: white;
+            text-align: center;
+            margin-top: auto;
+        }
+        #anim {
+            height: 70vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #111, #222);
+            cursor: pointer;
+        }
+        
+        .water-surface {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(77, 166, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(77, 166, 255, 0.3);
+        transform: scale(0);
+        pointer-events: none;
+        filter: blur(2px);
+        animation: ripple-animation 2s ease-out;
+        }
+        
+        @keyframes ripple-animation {
+            40% {
+                opacity: 1;
+            }
+            to {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
+        .text-block {
+    max-width: 400px; /* Adjust width as needed */
+    margin: 20px auto;
+    text-align: justify;
+    
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.text-block p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+.extra-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.dollar-sign {
+    position: absolute;
+    font-size: 40px;
+    color: gold;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.dollar-top {
+    left: -60px;
+    top: 5%; /* Moves above the text */
+    animation: moveDollarRight 6s linear infinite;
+}
+
+.dollar-bottom {
+    right: -60px;
+    bottom: 5%; /* Moves below the text */
+    animation: moveDollarLeft 6s linear infinite;
+    animation-delay: 3s; /* Delays so they don't move together */
+}
+
+@keyframes moveDollarRight {
+    0% {
+        left: -60px;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        left: 110%;
+        opacity: 0;
+    }
+}
+@keyframes moveDollarLeft {
+    0% {
+        right: -60px;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        right: 110%;
+        opacity: 0;
+    }
+}
+.fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .btn {
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .btn:hover {
+        box-shadow: 0px 0px 15px rgba(77, 166, 255, 0.8);
+    }
+    nav ul li a {
+        transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    }
+    nav ul li a:hover {
+        transform: scale(1.3);
+        text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
+    }
+    /* Sticky Header with Fade-in Effect */
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(34, 34, 34, 0.9);
+        transition: top 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        z-index: 1000;
+        height: 60px; 
+    }
+    .hidden-header {
+        top: -100px;
+        opacity: 0;
+    }
+    .testimonials {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #222, #111);
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.testimonials h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.testimonials h2::before,
+.testimonials h2::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 4px;
+    background: #4da6ff;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.testimonials h2::before {
+    left: -60px;
+}
+
+.testimonials h2::after {
+    right: -60px;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.testimonial {
+    perspective: 1000px;
+    width: 250px;
+}
+
+.testimonial-card {
+    width: 100%;
+    height: 180px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s;
+    cursor: pointer;
+}
+
+.testimonial:hover .testimonial-card {
+    transform: rotateY(180deg);
+    
+}
+
+.testimonial-front {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(77, 166, 255, 0.8);
+    background: #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backface-visibility: hidden;
+}
+.testimonial-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(77, 166, 255, 0.9), 
+                0 0 40px rgba(77, 166, 255, 0.6), 
+                0 0 60px rgba(77, 166, 255, 0.4);
+    background:#010102;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backface-visibility: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.testimonial-front p {
+    font-size: 16px;
+    font-style: italic;
+}
+
+.testimonial-front span {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #4da6ff;
+}
+
+.testimonial-back {
+    background: #444;
+    transform: rotateY(180deg);
+}
+.trail-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevents blocking clicks */
+    overflow: hidden;
+}
+
+.trail {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: blue; /* Customize color */
+    border-radius: 50%;
+    opacity: 0.8;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0); }
+}
+.benefits-section {
+            width: 100%;
+            overflow: hidden;
+            background-color: #1a1a1a;;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .benefits-container {
+            display: flex;
+            width: max-content;
+            animation: scrollLoop 15s linear infinite;
+        }
+
+        .benefit-box {
+            min-width: 300px;
+            max-width: 300px;
+            height: 200px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.8); /* Blue glow */
+        }
+        .benefit-box:hover {
+            transform: scale(1.07); /* Slight zoom on hover */
+        }
+        .benefit-box h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        @keyframes scrollLoop {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Budget<span>ify</span></div>
+        <nav>
+            <ul>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="support2.html">Support</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html" class="signup-btn">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div class="content">
+            <div class="stories-container">
+                <div class="stories">
+                    <img src="stack1.jpg" alt="Story 1">
+                    <img src="stack2.jpg" alt="Story 2">
+                    <img src="stack3.jpg" alt="Story 3">
+                    <img src="stack4.webp" alt="Story 4">
+                    <img src="stack5.jpg" alt="Story 5">
+                </div>
+            </div>
+            <div class="story-text" id="storyText">Finding it challenging to stay on top of your finances?</div>
+        </div>
+    </section>
+    <section class="hero">
+        <h1>Take Control of Your Finances</h1>
+        <p>Track your expenses, set budgets, and achieve financial freedom.</p>
+        <!-- <button class="btn" onclick="showTracker()">Start Tracking</button> -->
+        <a href="login.html" class="signup-btn btn">Start Tracking</a>
+    </section>
+
+    <section class="extra-content">
+        <div class="dollar-sign dollar-top">$</div> <!-- Upper Dollar Sign -->
+    <h2>Why Budget Tracking Matters?</h2>
+    <p>Budget tracking helps you control your spending, save money, and achieve financial stability.</p>
+    <p>Start today and take charge of your financial future!</p>
+    <div class="dollar-sign dollar-bottom">$</div> <!-- Lower Dollar Sign -->
+    </section>
+    <section id="anim">
+        <div class="water-surface" >
+            <h1 style="text-align: center;">
+                Why this application is the best for you ?
+            </h1>
+            <div class="text-block">
+                <p>Unlike generic budgeting apps, my software offers a seamless, user-friendly experience tailored to your financial habits.</p>
+                <p>With intuitive expense tracking, real-time budget analysis, and smart insights, it empowers you to take full control of your finances effortlessly.</p>
+                <p>Unlike others, it prioritizes <strong>simplicity without sacrificing depth</strong>, ensuring both beginners and finance-savvy users can benefit.</p>
+                <p>Plus, with enhanced data security and customizable features, my software adapts to your unique needs—making it the ultimate tool for achieving financial stability and growth.</p>
+            </div>
+            <br>
+        </div>
+    </section>
+    <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <div class="testimonial-card">
+                    <div class="testimonial-front">
+                        <p>"This app completely changed how I manage my budget! Highly recommend!"</p>
+                        <span>- Alluri Sitaram Chakradhar</span>
+                    </div>
+                    <div class="testimonial-back">
+                        <p>⭐⭐⭐⭐⭐</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-card">
+                    <div class="testimonial-front">
+                        <p>"A must-have for financial planning. The insights are incredibly helpful!"</p>
+                        <span>- Sairam krishnan</span>
+                    </div>
+                    <div class="testimonial-back">
+                        <p>⭐⭐⭐⭐⭐</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-card">
+                    <div class="testimonial-front">
+                        <p>"Easy to use and has helped me save more than I expected!"</p>
+                        <span>- Nirmala Sitharam</span>
+                    </div>
+                    <div class="testimonial-back">
+                        <p>⭐⭐⭐⭐</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="benefits-section">
+        <div class="benefits-container">
+            <!-- Duplicated content for seamless looping -->
+            <div class="benefit-box"><h3>Financial Stability</h3><p>Budgeting helps you stay on top of your finances and avoid debt.</p></div>
+            <div class="benefit-box"><h3>Better Savings</h3><p>Setting a budget allows you to allocate funds toward savings goals.</p></div>
+            <div class="benefit-box"><h3>Reduced Stress</h3><p>Knowing where your money goes reduces financial anxiety.</p></div>
+            <div class="benefit-box"><h3>Spending Control</h3><p>Tracking expenses prevents overspending and helps manage priorities.</p></div>
+            <div class="benefit-box"><h3>Investment Planning</h3><p>A budget allows you to set aside money for future investments.</p></div>
+    
+            <!-- Duplicate slides for smooth transition -->
+            <div class="benefit-box"><h3>Financial Stability</h3><p>Budgeting helps you stay on top of your finances and avoid debt.</p></div>
+            <div class="benefit-box"><h3>Better Savings</h3><p>Setting a budget allows you to allocate funds toward savings goals.</p></div>
+            <div class="benefit-box"><h3>Reduced Stress</h3><p>Knowing where your money goes reduces financial anxiety.</p></div>
+            <div class="benefit-box"><h3>Spending Control</h3><p>Tracking expenses prevents overspending and helps manage priorities.</p></div>
+            <div class="benefit-box"><h3>Investment Planning</h3><p>A budget allows you to set aside money for future investments.</p></div>
+        </div>
+    </section>
+    <section id="community" style="text-align: center; padding: 50px 0;">
+        <h2>Join Our Community</h2>
+        <p>Connect with us on social media</p>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+            <a href="https://www.instagram.com/" target="_blank">
+                <img src="instagram.webp" alt="Instagram" style="width: 50px; height: 50px;">
+            </a>
+            <a href="https://www.whatsapp.com/" target="_blank">
+                <img src="WhatsApp.svg.webp" alt="WhatsApp" style="width: 50px; height: 50px;">
+            </a>
+            <a href="https://discord.com/" target="_blank">
+                <img src="Discord-logo-01.png" alt="Discord" style="width: 50px; height: 50px;">
+            </a>
+            <a href="https://www.facebook.com/" target="_blank">
+                <img src="facebook.png" alt="Facebook" style="width: 50px; height: 50px;">
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 BudgetTracker. All rights reserved.</p>
+    </footer>
+    <div class="trail-container"></div>
+
+    <script>
+        document.addEventListener("mousemove", function (e) {
+    let trail = document.createElement("div");
+    trail.classList.add("trail");
+    document.querySelector(".trail-container").appendChild(trail);
+
+    // Set position to cursor
+    trail.style.left = `${e.clientX}px`;
+    trail.style.top = `${e.clientY}px`;
+
+    // Remove element after animation
+    setTimeout(() => {
+        trail.remove();
+    }, 500); // Should match fadeOut animation duration
+});
+
+        
+        let lastScrollY = window.scrollY;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > lastScrollY) {
+            header.classList.add("hidden-header");
+        } else {
+            header.classList.remove("hidden-header");
+        }
+        lastScrollY = window.scrollY;
+    });
+        document.addEventListener("DOMContentLoaded", function () {
+        const heroText = "Take Control of Your Finances";
+        const heroHeading = document.querySelector(".hero h1");
+        let index = 0;
+        
+        function typeText() {
+            if (index < heroText.length) {
+                heroHeading.textContent += heroText[index];
+                index++;
+                setTimeout(typeText, 100);
+            }
+        }
+        
+        heroHeading.textContent = ""; // Clear existing text
+        typeText();
+    });
+         document.querySelectorAll("section").forEach(section => {
+        section.classList.add("fade-in");
+    });
+        document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+
+        function checkVisibility() {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) {
+                    section.classList.add("visible");
+                }
+            });
+        }
+        
+        window.addEventListener("scroll", checkVisibility);
+        checkVisibility(); // Run on page load
+    });
+        // Previous JavaScript remains the same
+        
+        // Add ripple effect
+        const animSection = document.getElementById('anim');
+        const waterSurface = document.querySelector('.water-surface');
+        
+        animSection.addEventListener('click', function (e) {
+    // Create ripple element
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+
+    // Get correct position relative to the section
+    const rect = animSection.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Define ripple size
+    const rippleSize = rect.width * 0.1;
+    
+    // Center the ripple at the click position
+    ripple.style.left = `${x - rippleSize / 2}px`;
+    ripple.style.top = `${y - rippleSize / 2}px`;
+    ripple.style.width = `${rippleSize}px`;
+    ripple.style.height = `${rippleSize}px`;
+
+    waterSurface.appendChild(ripple);
+
+    // Remove ripple after animation completes
+    setTimeout(() => {
+        ripple.remove();
+    }, 2000);
+});
+
+        // Image deck functionality (fixed version)
+        const stories = document.querySelector(".stories");
+        let storyImages = Array.from(stories.children);
+        const storyTextElement = document.getElementById("storyText");
+        const storyTexts = [
+            "Finding it challenging to stay on top of your finances?",
+            "Struggling to stay on top of your expenses and tax obligations?",
+            "Falling short of your financial targets despite your best efforts??",
+            "There’s no need to worry — we’ve got you covered.",
+            "Leverage the power of our next-gen financial management system to gain clarity, optimize spending, and build a stronger financial future."
+        ];
+        let currentIndex = 0;
+        
+        // Initialize the stories in correct order with proper z-index and transforms
+        function initializeStories() {
+            storyImages.forEach((img, index) => {
+                img.style.position = "absolute";
+                img.style.zIndex = storyImages.length - index;
+                img.style.transform = `translate(${(index % 2 === 0 ? 5 : -5) * index}px, ${(index % 2 === 0 ? -5 : 5) * index}px) rotate(${(index % 2 === 0 ? 2 : -2) * index}deg) scale(${1 - index * 0.02})`;
+                img.style.opacity = "1";
+                img.style.transition = "transform 1s ease-in-out, opacity 1s ease-in-out";
+            });
+        }
+        
+        // Call initialization when page loads
+        initializeStories();
+
+        function moveStory() {
+            if (storyImages.length <= 1) {
+                resetStories();
+                return;
+            }
+            
+            const firstStory = storyImages.shift();
+            firstStory.style.transform = "translateX(120%) scale(1)";
+            firstStory.style.opacity = "0";
+            
+            setTimeout(() => {
+                firstStory.remove();
+                if (storyImages.length === 0) {
+                    resetStories();
+                }
+            }, 1000);
+            
+            // Update remaining images
+            storyImages.forEach((img, index) => {
+                img.style.zIndex = storyImages.length - index;
+                img.style.transform = `translate(${(index % 2 === 0 ? 5 : -5) * index}px, ${(index % 2 === 0 ? -5 : 5) * index}px) rotate(${(index % 2 === 0 ? 2 : -2) * index}deg) scale(${1 - index * 0.02})`;
+            });
+            
+            setTimeout(() => {
+                storyTextElement.style.opacity = "0";
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % storyTexts.length;
+                    storyTextElement.textContent = storyTexts[currentIndex];
+                    storyTextElement.style.opacity = "1";
+                }, 500);
+            }, 500);
+        }
+
+        function resetStories() {
+            stories.innerHTML = '';
+            storyImages = [
+                "stack1.jpg",
+                "stack2.jpg",
+                "stack3.jpg",
+                "stack4.webp",
+                "stack5.jpg"
+            ].map((src, index) => {
+                let img = document.createElement("img");
+                img.src = src;
+                img.alt = `Story ${index + 1}`;
+                img.style.position = "absolute";
+                img.style.opacity = "0";
+                img.style.transition = "transform 1s ease-in-out, opacity 1s ease-in-out";
+                stories.appendChild(img);
+                return img;
+            });
+            
+            // Set initial positions after a small delay to allow DOM update
+            setTimeout(() => {
+                storyImages.forEach((img, index) => {
+                    img.style.zIndex = storyImages.length - index;
+                    img.style.transform = `translate(${(index % 2 === 0 ? 5 : -5) * index}px, ${(index % 2 === 0 ? -5 : 5) * index}px) rotate(${(index % 2 === 0 ? 2 : -2) * index}deg) scale(${1 - index * 0.02})`;
+                    img.style.opacity = "1";
+                });
+            }, 50);
+            
+            currentIndex = 0;
+            storyTextElement.textContent = storyTexts[currentIndex];
+            storyTextElement.style.opacity = "1";
+        }
+        
+        // Start the animation
+        setInterval(moveStory, 3000);
+    </script>
+</body>
+</html>

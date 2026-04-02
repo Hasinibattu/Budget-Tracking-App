@@ -1,0 +1,663 @@
+[
+  {
+    "userId": 0,
+    "username": "defaultUser",
+    "password": "defaultPass",
+    "email": "default@user.com",
+    "balance": [
+      0
+    ],
+    "earnings": {
+      "1": {
+        "amount": 100,
+        "date": "2021-07-01",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 200,
+        "date": "2021-07-02",
+        "source": "lottery"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 50,
+        "date": "2021-07-03",
+        "category": "food"
+      },
+      "2": {
+        "amount": 100,
+        "date": "2021-07-04",
+        "category": "clothing"
+      }
+    },
+    "budget": {
+      "1": {
+        "for": "car",
+        "target": 100000,
+        "current": 50000
+      },
+      "2": {
+        "for": "house",
+        "target": 500000,
+        "current": 200000
+      }
+    }
+  },
+  {
+    "userId": 1,
+    "username": "dom",
+    "password": "dom",
+    "email": "dom@gmail.com",
+    "balance": [
+      0,
+      10000,
+      4400,
+      60400,
+      64900,
+      57900,
+      57300
+    ],
+    "earnings": {
+      "1": {
+        "amount": 100,
+        "date": "2021-07-01",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 200,
+        "date": "2021-07-02",
+        "source": "lottery"
+      },
+      "3": {
+        "amount": 101010,
+        "date": "04-04-2025",
+        "source": "gift"
+      },
+      "4": {
+        "amount": 7667676,
+        "date": "05-04-2025",
+        "source": "investment"
+      },
+      "5": {
+        "amount": 232323,
+        "date": "05-04-2025",
+        "source": "investment"
+      },
+      "6": {
+        "amount": 30403,
+        "date": "06-04-2025",
+        "source": "gift"
+      },
+      "7": {
+        "amount": 10000,
+        "date": "07-04-2025",
+        "source": "investment"
+      },
+      "8": {
+        "amount": 56000,
+        "date": "07-04-2025",
+        "source": "salary"
+      },
+      "9": {
+        "amount": 4500,
+        "date": "07-04-2025",
+        "source": "gift"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 50,
+        "date": "2021-07-03",
+        "category": "food"
+      },
+      "2": {
+        "amount": 100,
+        "date": "2021-07-04",
+        "category": "clothing"
+      },
+      "3": {
+        "amount": 10000,
+        "date": "04-04-2025",
+        "category": "food"
+      },
+      "4": {
+        "amount": 54000,
+        "date": "05-04-2025",
+        "category": "utilities"
+      },
+      "5": {
+        "amount": 120120,
+        "date": "05-04-2025",
+        "category": "transport"
+      },
+      "6": {
+        "amount": 13130130,
+        "date": "05-04-2025",
+        "category": "food"
+      },
+      "7": {
+        "amount": 3434342233,
+        "date": "05-04-2025",
+        "category": "transport"
+      },
+      "8": {
+        "amount": 3434343434,
+        "date": "05-04-2025",
+        "category": "entertainment"
+      },
+      "9": {
+        "amount": 1,
+        "date": "05-04-2025",
+        "category": "other"
+      },
+      "10": {
+        "amount": 333,
+        "date": "05-04-2025",
+        "category": "transport"
+      },
+      "11": {
+        "amount": 212,
+        "date": "05-04-2025",
+        "category": "transport"
+      },
+      "12": {
+        "amount": 121212,
+        "date": "05-04-2025",
+        "category": "food"
+      },
+      "13": {
+        "amount": 12345,
+        "date": "05-04-2025",
+        "category": "food"
+      },
+      "14": {
+        "amount": 69,
+        "date": "05-04-2025",
+        "category": "other"
+      },
+      "15": {
+        "amount": 8989,
+        "date": "06-04-2025",
+        "category": "other"
+      },
+      "16": {
+        "amount": 5600,
+        "date": "07-04-2025",
+        "category": "entertainment"
+      },
+      "17": {
+        "amount": 7000,
+        "date": "07-04-2025",
+        "category": "other"
+      },
+      "18": {
+        "amount": 600,
+        "date": "29-04-2025",
+        "category": "food"
+      }
+    },
+    "budget": {
+      "4": {
+        "for": "cycle",
+        "target": 12312,
+        "current": 112234
+      },
+      "5": {
+        "for": "Sairam",
+        "target": 25000,
+        "current": 12000
+      }
+    }
+  },
+  {
+    "userId": 2,
+    "username": "jishnu",
+    "password": "jishnu",
+    "email": "jishnu@gmail",
+    "balance": [
+      0
+    ],
+    "earnings": {
+      "1": {
+        "amount": 100,
+        "date": "2021-07-01",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 200,
+        "date": "2021-07-02",
+        "source": "lottery"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 50,
+        "date": "2021-07-03",
+        "category": "food"
+      },
+      "2": {
+        "amount": 100,
+        "date": "2021-07-04",
+        "category": "clothing"
+      }
+    },
+    "budget": {}
+  },
+  {
+    "userId": 3,
+    "username": "chakri",
+    "password": "chakri",
+    "email": "chakri@gmail",
+    "balance": [
+      0
+    ],
+    "earnings": {
+      "1": {
+        "amount": 100,
+        "date": "2021-07-01",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 200,
+        "date": "2021-07-02",
+        "source": "lottery"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 50,
+        "date": "2021-07-03",
+        "category": "food"
+      },
+      "2": {
+        "amount": 100,
+        "date": "2021-07-04",
+        "category": "clothing"
+      }
+    },
+    "budget": {}
+  },
+  {
+    "userId": 4,
+    "username": "jish",
+    "password": "jish",
+    "email": "jish@jish.jish",
+    "balance": [
+      0
+    ],
+    "earnings": {
+      "1": {
+        "amount": 100,
+        "date": "2021-07-01",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 200,
+        "date": "2021-07-02",
+        "source": "lottery"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 50,
+        "date": "2021-07-03",
+        "category": "food"
+      },
+      "2": {
+        "amount": 100,
+        "date": "2021-07-04",
+        "category": "clothing"
+      }
+    },
+    "budget": {}
+  },
+  {
+    "userId": 5,
+    "username": "hasini",
+    "password": "hasini",
+    "email": "hasini@gmail.com",
+    "balance": [
+      0,
+      100000,
+      99000,
+      109000,
+      108000,
+      108200,
+      107090,
+      107102
+    ],
+    "earnings": {
+      "1": {
+        "amount": 100000,
+        "date": "06-04-2025",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 10000,
+        "date": "07-04-2025",
+        "source": "gift"
+      },
+      "3": {
+        "amount": 200,
+        "date": "07-04-2025",
+        "source": "investment"
+      },
+      "4": {
+        "amount": 12,
+        "date": "07-04-2025",
+        "source": "salary"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 1000,
+        "date": "06-04-2025",
+        "category": "food"
+      },
+      "2": {
+        "amount": 1000,
+        "date": "07-04-2025",
+        "category": "entertainment"
+      },
+      "3": {
+        "amount": 1110,
+        "date": "07-04-2025",
+        "category": "transport"
+      }
+    },
+    "budget": {
+      "1": {
+        "for": "car",
+        "target": 1000000,
+        "current": 10100000
+      }
+    }
+  },
+  {
+    "userId": 6,
+    "username": "jeevan",
+    "password": "jeevan",
+    "email": "jeevan@j.van",
+    "balance": [
+      0,
+      100000,
+      104000,
+      84771,
+      84651,
+      89651,
+      87648
+    ],
+    "earnings": {
+      "1": {
+        "amount": 100000,
+        "date": "07-04-2025",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 4000,
+        "date": "07-04-2025",
+        "source": "gift"
+      },
+      "3": {
+        "amount": 5000,
+        "date": "07-04-2025",
+        "source": "investment"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 19229,
+        "date": "07-04-2025",
+        "category": "utilities"
+      },
+      "2": {
+        "amount": 120,
+        "date": "07-04-2025",
+        "category": "food"
+      },
+      "3": {
+        "amount": 2003,
+        "date": "07-04-2025",
+        "category": "transport"
+      }
+    },
+    "budget": {
+      "2": {
+        "for": "Buying Toothbrush",
+        "target": 20,
+        "current": 0
+      },
+      "3": {
+        "for": "Building house",
+        "target": 10000000,
+        "current": 203304
+      },
+      "4": {
+        "for": "Baking cake",
+        "target": 500,
+        "current": 0
+      },
+      "5": {
+        "for": "Buying car",
+        "target": 2000000,
+        "current": 0
+      }
+    }
+  },
+  {
+    "userId": 7,
+    "username": "ritesh",
+    "password": "ritesh",
+    "email": "ritesh@gmail.com",
+    "balance": [
+      0,
+      100000,
+      102000,
+      101800,
+      101900,
+      100900
+    ],
+    "earnings": {
+      "1": {
+        "amount": 100000,
+        "date": "07-04-2025",
+        "source": "gift"
+      },
+      "2": {
+        "amount": 2000,
+        "date": "07-04-2025",
+        "source": "salary"
+      },
+      "3": {
+        "amount": 100,
+        "date": "07-04-2025",
+        "source": "investment"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 200,
+        "date": "07-04-2025",
+        "category": "food"
+      },
+      "2": {
+        "amount": 1000,
+        "date": "07-04-2025",
+        "category": "transport"
+      }
+    },
+    "budget": {
+      "1": {
+        "for": "Buying car",
+        "target": 2000000,
+        "current": 30000
+      },
+      "2": {
+        "for": "bike",
+        "target": 50000,
+        "current": 50000
+      }
+    }
+  },
+  {
+    "userId": 8,
+    "username": "dom1",
+    "password": "dom1",
+    "email": "dom@dom.com",
+    "balance": [
+      0
+    ],
+    "earnings": {},
+    "spendings": {},
+    "budget": {}
+  },
+  {
+    "userId": 9,
+    "username": "dom2",
+    "password": "dom2",
+    "email": "dom@fom.com",
+    "balance": [
+      0
+    ],
+    "earnings": {},
+    "spendings": {},
+    "budget": {}
+  },
+  {
+    "userId": 10,
+    "username": "van",
+    "password": "van",
+    "email": "van@vanvan.com",
+    "balance": [
+      0,
+      10000,
+      1000,
+      1100,
+      1300,
+      1250,
+      350,
+      850,
+      750,
+      9750,
+      8942,
+      8852
+    ],
+    "earnings": {
+      "1": {
+        "amount": 10000,
+        "date": "30-04-2025",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 100,
+        "date": "30-04-2025",
+        "source": "gift"
+      },
+      "3": {
+        "amount": 200,
+        "date": "30-04-2025",
+        "source": "investment"
+      },
+      "4": {
+        "amount": 500,
+        "date": "30-04-2025",
+        "source": "salary"
+      },
+      "5": {
+        "amount": 9000,
+        "date": "30-04-2025",
+        "source": "salary"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 9000,
+        "date": "30-04-2025",
+        "category": "entertainment"
+      },
+      "2": {
+        "amount": 50,
+        "date": "30-04-2025",
+        "category": "utilities"
+      },
+      "3": {
+        "amount": 900,
+        "date": "30-04-2025",
+        "category": "food"
+      },
+      "4": {
+        "amount": 100,
+        "date": "30-04-2025",
+        "category": "other"
+      },
+      "5": {
+        "amount": 808,
+        "date": "30-04-2025",
+        "category": "entertainment"
+      },
+      "6": {
+        "amount": 90,
+        "date": "30-04-2025",
+        "category": "transport"
+      }
+    },
+    "budget": {}
+  },
+  {
+    "userId": 11,
+    "username": "rajeev",
+    "password": "rajeev",
+    "email": "rajeev@gmail.com",
+    "balance": [
+      0,
+      10000,
+      9900,
+      9700,
+      11700,
+      11710,
+      10710
+    ],
+    "earnings": {
+      "1": {
+        "amount": 10000,
+        "date": "04-05-2025",
+        "source": "salary"
+      },
+      "2": {
+        "amount": 2000,
+        "date": "04-05-2025",
+        "source": "investment"
+      },
+      "3": {
+        "amount": 10,
+        "date": "04-05-2025",
+        "source": "gift"
+      }
+    },
+    "spendings": {
+      "1": {
+        "amount": 100,
+        "date": "04-05-2025",
+        "category": "food"
+      },
+      "2": {
+        "amount": 200,
+        "date": "04-05-2025",
+        "category": "entertainment"
+      },
+      "3": {
+        "amount": 1000,
+        "date": "04-05-2025",
+        "category": "utilities"
+      }
+    },
+    "budget": {
+      "2": {
+        "for": "car",
+        "target": 1000000,
+        "current": 0
+      }
+    }
+  }
+]
